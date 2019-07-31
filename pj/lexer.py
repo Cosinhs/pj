@@ -1,6 +1,6 @@
 from .constants import *
 
-JSON_WHITESPACE = [' ', '\t', '\b', '\n', '\r']
+JSON_WHITESPACE = [' ', '\t', '\n', '\r']
 JSON_SYNTAX = [JSON_COMMA, JSON_COLON, JSON_LEFTBRACKET, JSON_RIGHTBRACKET,
                JSON_LEFTBRACE, JSON_RIGHTBRACE]
 
@@ -29,7 +29,7 @@ def lex_string(string):
 def lex_number(string):
     json_number = ''
 
-    number_characters = [str(d) for d in range(0, 10)] + ['-', 'e', '.']
+    number_characters = [str(d) for d in range(0, 10)] + ['+', '-', 'E', 'e', '.']
 
     for c in string:
         if c in number_characters:
@@ -42,7 +42,9 @@ def lex_number(string):
     if not len(json_number):
         return None, string
 
-    if '.' in json_number:
+    if '.' in json_number or \
+       'e' in json_number or \
+       'E' in json_number:
         return float(json_number), rest
 
     return int(json_number), rest

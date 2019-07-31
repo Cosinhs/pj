@@ -38,7 +38,7 @@ def parse_object(tokens):
             raise Exception('Expected string key, got: {}'.format(json_key))
 
         t = tokens[0]
-        if tokens[0] != JSON_COLON:
+        if t != JSON_COLON:
             raise Exception('Expected colon after key in object, got: {}'.format(t))
 
         json_value, tokens = parse(tokens[1:])

@@ -1,6 +1,5 @@
 from .constants import *
 
-
 def parse_array(tokens):
     json_array = []
 

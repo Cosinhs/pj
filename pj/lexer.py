@@ -1,9 +1,5 @@
 from .constants import *
 
-JSON_WHITESPACE = [' ', '\t', '\n', '\r']
-JSON_SYNTAX = [JSON_COMMA, JSON_COLON, JSON_LEFTBRACKET, JSON_RIGHTBRACKET,
-               JSON_LEFTBRACE, JSON_RIGHTBRACE]
-
 FALSE_LEN = len('false')
 TRUE_LEN = len('true')
 NULL_LEN = len('null')
@@ -46,7 +42,7 @@ def lex_number(string):
        'e' in json_number or \
        'E' in json_number:
         return float(json_number), rest
-
+        
     return int(json_number), rest
 
 
@@ -103,7 +99,7 @@ def lex(string):
             # Ignore whitespace
             string = string[1:]
         elif c in JSON_SYNTAX:
-            tokens.append(c)
+            tokens.append(tuple(c))
             string = string[1:]
         else:
             raise Exception('Unexpected character: {}'.format(c))

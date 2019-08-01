@@ -50,8 +50,8 @@ def parse_object(tokens):
             return json_object, tokens[1:]
         elif t != JSON_COMMA:
             raise Exception('Expected comma after pair in object, got: {}'.format(t))
-
-        tokens = tokens[1:]
+        else:
+            tokens = tokens[1:]
 
     raise Exception('Expected end-of-object bracket')
 
